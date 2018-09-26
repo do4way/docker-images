@@ -125,9 +125,11 @@ function launchslave() {
     i=$((i+1))
     if [[ "$i" -gt "30" ]]; then
       echo "Exiting after too many attempts"
-      #kill $plabeler
-      #exit 1
-      break
+      # kill $plabeler
+      # exit 1
+      # try to lauchmaster
+      launchmaster
+      exit 0
     fi
     echo "Connecting to master failed.  Waiting..."
     sleep 1
