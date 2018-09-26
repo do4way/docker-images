@@ -101,7 +101,7 @@ function launchsentinel() {
    echo "sentinel auth-pass mymaster ${REDIS_PASS}" >> ${SENTINEL_CONF}
   elif [ -f "$REDIS_PASSWORD_FILE" ]; then
    echo "sentinel auth-pass mymaster $(cat $REDIS_PASSWORD_FILE)" >> ${SENTINEL_CONF}
-  fi  
+  fi
 
   redis-sentinel ${SENTINEL_CONF} --protected-mode no $@
 }
@@ -125,8 +125,9 @@ function launchslave() {
     i=$((i+1))
     if [[ "$i" -gt "30" ]]; then
       echo "Exiting after too many attempts"
-      kill $plabeler
-      exit 1
+      #kill $plabeler
+      #exit 1
+      break
     fi
     echo "Connecting to master failed.  Waiting..."
     sleep 1
